@@ -1,0 +1,67 @@
+// gradle构建的时候执行,buildscript中的声明是gradle脚本自身需要使用的资源 。 可以声明的资源包括依赖项 、 第三方插件 、 maven仓库地址等
+buildscript {
+    // 定义变量
+    ext {
+        springBootVersion = '1.5.9.RELEASE'
+        ALI_REPOSITORY_URL = 'http://maven.aliyun.com/nexus/content/groups/public'
+        REPOSITORY_URL = 'http://172.16.60.188:8081/nexus/content/groups/public'
+    }
+    // 仓库地址
+    repositories {
+        // 先从阿里云maven仓库中去下载，没有再去maven中央仓库
+        maven {
+            url ALI_REPOSITORY_URL
+        }
+        maven {
+            url REPOSITORY_URL
+        }
+        mavenCentral()
+
+    }
+    // 构建时所需要的插件或者是其他的依赖
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+
+}
+
+// 所有模块的总仓库地址
+allprojects {
+    // 在build.gradle文件中直接声明的依赖项、仓库地址等信息是项目自身需要的资源。
+    repositories {
+        maven {
+            url ALI_REPOSITORY_URL
+        }
+        maven {
+            url REPOSITORY_URL
+        }
+    }
+}
+
+subprojects {
+
+    apply plugin: 'war'
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+
+    apply plugin: 'application'
+    mainClassName = 'com.suixingpay.student.StudentManagerSystemApplication'
+    jar {
+        manifest {
+            attributes 'Main-Class': 'com.suixingpay.student.StudentManagerSystemApplication'
+        }
+        from {
+            configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+        }
+    }
+    group 'com.suixingpay'
+    version '1.0-SNAPSHOT'
+    sourceCompatibility = 1.8
+
+    dependencies {
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+    }
+
+}
+
