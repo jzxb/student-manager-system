@@ -10,7 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @MapperScan(value = "com.suixingpay.student.mapper")
-public class StudentManagerSystemApplication {
+public class
+StudentManagerSystemApplication {
     public static void main(String[] args) {
         SpringApplication.run(StudentManagerSystemApplication.class, args);
     }
