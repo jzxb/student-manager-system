@@ -1,26 +1,20 @@
 package com.suixingpay.student.bean;
 
-import org.hibernate.validator.constraints.NotEmpty;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 /**
  * @author Mr.yao
- * @date 2019/11/2 - 22:41
+ * @date 2019/11/2 - 20:41
  */
 public class Student {
-    @Id
-    @GeneratedValue
-    private String number_id;
-    @NotEmpty
+    private String numberId;
     private String name;
     private String sex;
     private String age;
     private String major;
     private String grade;
-    private String phone_number;
+    private String phoneNumber;
 
-    public String getNumber_id() {
-        return number_id;
+    public String getNumberId() {
+        return numberId;
     }
 
     public String getName() {
@@ -43,12 +37,12 @@ public class Student {
         return grade;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setNumber_id(String number_id) {
-        this.number_id = number_id;
+    public void setNumberId(String numberId) {
+        this.numberId = numberId;
     }
 
     public void setName(String name) {
@@ -71,7 +65,20 @@ public class Student {
         this.grade = grade;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "numberId='" + numberId + '\'' +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", age='" + age + '\'' +
+                ", major='" + major + '\'' +
+                ", grade='" + grade + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }
