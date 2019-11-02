@@ -4,7 +4,7 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-    #url: jdbc:mysql://localhost:3306/mybatis2?serverTimezone=Asia/Shanghai
+    #url: jdbc:mysql://localhost:3306/suixingpay?serverTimezone=Asia/Shanghai
     type: com.alibaba.druid.pool.DruidDataSource
     #   数据源其他配置
     initialSize: 5
