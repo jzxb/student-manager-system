@@ -24,4 +24,16 @@ public class UserServiceImpl implements IUserService, ExceptionConstants {
         User u = userMapper.findByVO(user);
         return u;
     }
+
+    @Override
+    public User loginService(String username) throws PcException {
+        if(username==null){
+            throw new PcException(ILLEGAL_ARGUMENT_NULL_ERROR_CODE, "用户名不能为空！");
+        }
+        if(userMapper.login(username)==null){
+            throw new PcException(ILLEGAL_ARGUMENT_NULL_ERROR_CODE, "用户名不存在");
+        }
+        User user = userMapper.login(username);
+        return user;
+    }
 }

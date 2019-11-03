@@ -17,4 +17,12 @@ public interface UserMapper {
      */
     User findByVO(User user) throws PcException;
 
+
+    /**
+     * 登录
+     * @author lichanghao
+     * @param username
+     * @throws PcException
+     */
+    User login(String username) throws PcException;
 }

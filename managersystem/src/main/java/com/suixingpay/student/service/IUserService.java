@@ -17,4 +17,14 @@ public interface IUserService {
      */
     User findByVO(User user) throws PcException;
 
+
+    /**
+     * 登录
+     * @author lichanghao
+     * @param username
+     * @return User对象
+     * @throws PcException
+     */
+    User loginService(String username) throws PcException;
+
 }
