@@ -3,7 +3,33 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.suixingpay.student.mapper.StudentMapper">
-    <select id="findById" resultType="com.suixingpay.student.bean.Student">
-        select * from studentmanager where number_id = #{id}
+    <resultMap>
+        <id column="number_id" property="number_id"></id>
+        <result column="name" property="name"></result>
+        <result column="sex" property="sex"></result>
+        <result column="age" property="age"></result>
+        <result column="major" property="major"></result>
+        <result column="grade" property="grade"></result>
+        <result column="phone_numb" property="phone_numb"></result>
+    </resultMap>
+    <select id="findById"  parameterType="java.util.Map">
+        select * from studentmanager where number_id=#{number_id}
+
     </select>
+    <insert id="save" parameterType="Student">
+        insert into values (#{number_id},#{name},#{sex},#{age},#{major},#{grade},#{phone_numb})
+    </insert>
+    <update id="updateById" parameterType="Student">
+        update studentmanager
+        <set>
+            <if test="number_id!=null">
+                number_id = #{number_id},
+            </if>
+
+        </set>
+        where number_id=#{number_id}
+    </update>
+    <delete id="deleteById" parameterType="int">
+        delete from studentmanager where number_id = #{id}
+    </delete>
 </mapper>
