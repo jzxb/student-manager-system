@@ -7,7 +7,10 @@ import com.suixingpay.student.service.impl.IStudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
+
+import static com.suixingpay.student.constants.ExceptionConstants.ILLEGAL_ARGUMENT_NULL_ERROR_CODE;
 
 /**
  * @author lhx
@@ -25,9 +28,9 @@ public class StudentController {
      * @throws PcException
      */
     @RequestMapping("/list")
-    public String list() throws PcException {
-        service.getStudentList();
-        return "Student/list";
+    public List<Student> list() throws PcException {
+        List<Student> list = service.getStudentList();
+        return list;
     }
 
     /**
@@ -46,8 +49,11 @@ public class StudentController {
      */
     @RequestMapping("/add")
     public String addStudentController(@RequestBody Student student) throws PcException {
+        if(student ==null){
+            throw new PcException(ILLEGAL_ARGUMENT_NULL_ERROR_CODE, "用户为空");
+        }
         service.saveService(student);
-        return "Student/add";
+        return "添加成功";
     }
 
     /**
@@ -59,7 +65,7 @@ public class StudentController {
     @RequestMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id) throws PcException {
         service.deleteByIdService(id);
-        return "redirect:/Student/list";
+        return "删除成功";
     }
 
     /**
@@ -73,7 +79,7 @@ public class StudentController {
     public String showUpdate (@PathVariable("id")Integer id, Map map) throws PcException {
         Student t = service.findByIdService(id);
         map.put("student",t);
-        return "/Student/amend";
+        return "显示修改";
     }
 
     /**
@@ -85,7 +91,7 @@ public class StudentController {
     @RequestMapping("/update")
     public String update(Student student) throws PcException {
         service.updateByIdService(student);
-        return "redirct:/Student/lidt";
+        return "修改成功";
     }
 
     /**
@@ -99,7 +105,7 @@ public class StudentController {
     public  String findById(@PathVariable("id")Integer id,Map map) throws PcException {
         Student t = service.findByIdService(id);
         map.put("student",t);
-        return "Student/findStudent";
+        return "查询学生";
     }
 
 }
