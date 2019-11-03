@@ -14,15 +14,6 @@ import org.springframework.stereotype.Repository;
 public interface UserMapper {
 
     /**
-     * @author lhx
-     * @param user 要查找的用户
-     * @return 查找到的用户
-     * @throws PcException
-     */
-    User findByVO(User user) throws PcException;
-
-
-    /**
      * 登录
      * @author lichanghao
      * @param username
