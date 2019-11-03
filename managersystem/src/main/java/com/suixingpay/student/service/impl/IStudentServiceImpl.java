@@ -1,6 +1,7 @@
 package com.suixingpay.student.service.impl;
 
 import com.suixingpay.student.bean.Student;
+import com.suixingpay.student.constants.ExceptionConstants;
 import com.suixingpay.student.expection.PcException;
 import com.suixingpay.student.mapper.StudentMapper;
 import com.suixingpay.student.service.IStudentService;
@@ -14,7 +15,7 @@ import java.util.List;
  * @date 2019/11/1 - 16:05
  */
 @Service
-public class IStudentServiceImpl implements IStudentService {
+public class IStudentServiceImpl implements IStudentService, ExceptionConstants {
 
     @Autowired
     private StudentMapper studentMapper;
@@ -29,7 +30,6 @@ public class IStudentServiceImpl implements IStudentService {
     @Override
     public void saveService(Student student) throws PcException {
         studentMapper.save(student);
-
     }
 
     /**
@@ -77,6 +77,9 @@ public class IStudentServiceImpl implements IStudentService {
      */
     @Override
     public List<Student> findByVO(Student student) throws PcException {
+        if(student == null){
+            throw new PcException(ILLEGAL_ARGUMENT_NULL_ERROR_CODE, "student不能为空！");
+        }
         List<Student> list = studentMapper.findByVO(student);
         return list;
     }
@@ -102,6 +105,9 @@ public class IStudentServiceImpl implements IStudentService {
      */
     @Override
     public Student findFirst(Student student) throws PcException {
+        if(student == null){
+            throw new PcException(ILLEGAL_ARGUMENT_NULL_ERROR_CODE, "student不能为空！");
+        }
         Student s = studentMapper.findFirst(student);
         return s;
     }
