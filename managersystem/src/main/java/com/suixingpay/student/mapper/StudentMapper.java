@@ -74,15 +74,4 @@ public interface StudentMapper {
      */
     Student findFirst(Student student) throws PcException;
 
-    /**
-     * 模糊查询
-     * @author lhx
-     * @param student 模糊查询条件
-     * @return 查询到的用户
-     * @throws PcException 抛出业务异常
-     */
-    List<Student> findLikeVO(Student student) throws PcException;
-
-
-
 }
