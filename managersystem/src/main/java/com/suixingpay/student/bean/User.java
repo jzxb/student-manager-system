@@ -14,19 +14,19 @@ import lombok.Setter;
 @Setter
 public class User {
     private int id;
-    private String userName;
-    private String passWord;
+    private String username;
+    private String password;
 
     public void setId(int id) {
         this.id = id;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public void setPassWord(String passWord) {
-        this.passWord = passWord;
+        this.password = passWord;
     }
 
     public int getId() {
@@ -34,19 +34,19 @@ public class User {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public String getPassWord() {
-        return passWord;
+        return password;
     }
 
     @Override
     public String toString(){
         return "User{" +
                 "Id='" + id + '\'' +
-                ", userName='" + userName + '\'' +
-                ", passWord='" + passWord + '\'' +
+                ", userName='" + username + '\'' +
+                ", passWord='" + password + '\'' +
                 '}';
     }
 

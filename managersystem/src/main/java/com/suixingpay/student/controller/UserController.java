@@ -4,10 +4,11 @@ import com.suixingpay.student.bean.User;
 import com.suixingpay.student.expection.PcException;
 import com.suixingpay.student.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import sun.misc.Request;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author lhx
@@ -21,10 +22,13 @@ public class UserController {
     private UserServiceImpl userService;
 
 
-    @PostMapping("/login")
-    public String loginController(@RequestBody User user) throws PcException {
-        User user1 = userService.loginService(user.getUserName());
-        if(user1.getPassWord().equals(user.getPassWord())){
+    @RequestMapping("/login")
+    public String loginController(@RequestParam("username")String username, @RequestParam("password")String password, HttpServletRequest request) throws PcException {
+        System.out.println("登录验证");
+        User user1 = userService.loginService(username);
+        HttpSession session = request.getSession();
+        session.setAttribute("username", username);
+        if(user1.getPassWord().equals(password)){
             return "登录成功";
         }else {
             return "密码有误";
