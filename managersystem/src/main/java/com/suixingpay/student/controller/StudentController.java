@@ -47,7 +47,7 @@ public class StudentController {
      * @return
      * @throws PcException
      */
-    @RequestMapping("/add")
+    @PostMapping("/add")
     public String addStudentController(@RequestBody Student student) throws PcException {
         if(student ==null){
             throw new PcException(ILLEGAL_ARGUMENT_NULL_ERROR_CODE, "用户为空");
