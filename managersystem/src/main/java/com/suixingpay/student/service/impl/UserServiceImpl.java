@@ -6,11 +6,13 @@ import com.suixingpay.student.expection.PcException;
 import com.suixingpay.student.mapper.UserMapper;
 import com.suixingpay.student.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author lhx
  * @date 2019/11/3 - 11:46
  */
+@Service
 public class UserServiceImpl implements IUserService, ExceptionConstants {
 
     @Autowired

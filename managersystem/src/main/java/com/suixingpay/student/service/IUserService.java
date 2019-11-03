@@ -2,11 +2,13 @@ package com.suixingpay.student.service;
 
 import com.suixingpay.student.bean.User;
 import com.suixingpay.student.expection.PcException;
+import org.springframework.stereotype.Service;
 
 /**
  * @author lhx
  * @date 2019/11/3 - 11:45
  */
+@Service
 public interface IUserService {
 
     /**

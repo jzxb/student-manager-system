@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2019/11/3 - 11:45
  */
 @RestController
-@RequestMapping("User")
+@RequestMapping("/User")
 public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public String loginController(@RequestBody User user) throws PcException {
         User user1 = userService.loginService(user.getUserName());
         if(user1.getPassWord().equals(user.getPassWord())){
