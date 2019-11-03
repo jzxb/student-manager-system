@@ -3,7 +3,83 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.suixingpay.student.mapper.StudentMapper">
-    <select id="findById" resultType="com.suixingpay.student.bean.Student">
-        select * from studentmanager where number_id = #{id}
+    <select id="findById"  resultType="com.suixingpay.student.bean.Student">
+        select * from studentmanager where number_id=#{number_id}
+    </select>
+    <insert id="save" parameterType="com.suixingpay.student.bean.Student">
+        insert into values (#{number_id},#{name},#{sex},#{age},#{major},#{grade},#{phone_numb})
+    </insert>
+    <update id="updateById" parameterType="com.suixingpay.student.bean.Student">
+        update studentmanager
+        <set>
+            <if test="number_id!=null">
+                number_id = #{number_id},
+            </if>
+
+        </set>
+        where number_id=#{number_id}
+    </update>
+    <delete id="deleteById" parameterType="int">
+        delete from studentmanager where number_id = #{id}
+    </delete>
+    <select id="getStudentList" resultType="com.suixingpay.student.bean.Student">
+        select * from studentmanager
+    </select>
+    <select id="findFirst" resultType="com.suixingpay.student.bean.Student">
+        select * from studentmanager
+        <where>
+            <choose>
+                <when test="number_id!=null">
+                    number_id = #{number_id}
+                </when>
+                <when test="name!=null">
+                    name = #{name}
+                </when>
+                <when test="gender != null">
+                    gender = #{gender}
+                </when>
+                <when test="age != null">
+                    age = #{age}
+                </when>
+                <when test="major != null">
+                    major = #{major}
+                </when>
+                <when test="grade != null">
+                    grade = #{grade}
+                </when>
+                <when test="phoneNumber != null">
+                    phoneNumber = #{phoneNumber}
+                </when>
+            </choose>
+        </where>
+        limit 1
+    </select>
+    <select id="findByVO" resultType="com.suixingpay.student.bean.Student">
+        select * from studentmanager
+        <where>
+            <choose>
+                <when test="number_id!=null">
+                    number_id = #{number_id}
+                </when>
+                <when test="name!=null">
+                    name = #{name}
+                </when>
+                <when test="gender != null">
+                    gender = #{gender}
+                </when>
+                <when test="age != null">
+                    age = #{age}
+                </when>
+                <when test="major != null">
+                    major = #{major}
+                </when>
+                <when test="grade != null">
+                    grade = #{grade}
+                </when>
+                <when test="phoneNumber != null">
+                    phoneNumber = #{phoneNumber}
+                </when>
+            </choose>
+        </where>
     </select>
 </mapper>
