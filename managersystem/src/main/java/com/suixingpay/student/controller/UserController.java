@@ -31,7 +31,7 @@ public class UserController {
         if(user1.getPassWord().equals(password)){
             return "登录成功";
         }else {
-            throw  new PcException("ILLEGAL_ARGUMENT_NULL_ERROR_CODE","密码错误");
+            return "密码有误";
         }
 
     }
